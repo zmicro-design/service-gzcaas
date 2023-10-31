@@ -1,0 +1,14 @@
+services:
+  gzcaas:
+    restart: always
+    image: whatwewant/gzcaas:${SERVICE_GZCAAS_IMAGE_VERSION}
+    privileged: true
+    environment:
+      PORT: $SERVICE_GZCAAS_PORT
+      CAAS_CLIENT_ID: ${SERVICE_GZCAAS_CLIENT_ID}
+      CAAS_CLIENT_SECRET: ${SERVICE_GZCAAS_CLIENT_SECRET}
+      
+networks:
+  default:
+    external: true
+    name: compose-ingress
