@@ -10,7 +10,8 @@ services:
       CAAS_CLIENT_SECRET: ${SERVICE_GZCAAS_CLIENT_SECRET}
       CAAS_METADATA_DIR: /data/idp/agent/deploys
       CAAS_WORKDIR: /data/cache/idp/build
-      CAAS_SHELL: eunomia-shell
+      # CAAS_SHELL: eunomia-shell
+      CAAS_SHELL: /usr/local/lib/zmicro/bin/eunomia-shell
       
 networks:
   default:
