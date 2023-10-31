@@ -12,5 +12,6 @@ services:
       
 networks:
   default:
-    external: true
-    name: compose-ingress
+    # external: true
+    # name: compose-ingress
+    name: gzcaas
