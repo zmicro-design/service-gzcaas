@@ -10,6 +10,11 @@ check() {
     cat $SERVICE_CONFIG
   fi
 
+  docker network ls | grep cicd >>/dev/null 2>&1
+  if [ $? -ne 0 ]; then
+    docker network create cicd
+  fi
+
   service::config_set SERVICE_GZCAAS_PORT text "Port" 8838
   service::config_set SERVICE_GZCAAS_CLIENT_ID text "Client ID"
   service::config_set SERVICE_GZCAAS_CLIENT_SECRET text "Client Secret"
