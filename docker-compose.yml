@@ -12,6 +12,14 @@ services:
       CAAS_WORKDIR: /data/cache/idp/build
       # CAAS_SHELL: eunomia-shell
       CAAS_SHELL: /usr/local/lib/zmicro/bin/eunomia-shell
+    volumes:
+      # eunomia config
+      - ${SERVICE_CONFIGS}/eunomia:/configs/plugins/eunomia/config
+      # eunomia git credentials
+      - ${SERVICE_CONFIGS}/.git-credentials:/root/.git-credentials
+      # docker
+      - ${SERVICE_CONFIGS}/docker-daemon.json:/etc/docker/daemon.json
+      - ${SERVICE_CONFIGS}/docker-buildx.config.toml:/etc/docker/buildx.config.toml
       
 networks:
   default:
