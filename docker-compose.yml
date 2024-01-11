@@ -20,8 +20,9 @@ services:
       # docker
       - ${SERVICE_CONFIGS}/docker-daemon.json:/etc/docker/daemon.json
       - ${SERVICE_CONFIGS}/docker-buildx.config.toml:/etc/docker/buildx.config.toml
-    mem_limit: 8192m
-    cpus: 4
+    mem_limit: ${SERVICE_GZCAAS_MEM_LIMIT:-"8192m"}
+    cpus: ${SERVICE_GZCAAS_CPU_LIMIT:-4}
+    command: sleep 1000000000
       
 networks:
   default:
