@@ -13,6 +13,7 @@ services:
       # CAAS_SHELL: eunomia-shell
       CAAS_SHELL: /usr/local/lib/zmicro/bin/eunomia-shell
       #
+      ENABLE_DOCKER_BUILDX: ${ENABLE_DOCKER_BUILDX:-true}
       DOCKER_BUILDER_PLATFORM: ${SERVICE_DOCKER_BUILDER_PLATFORM:-linux/amd64,linux/arm64}
     volumes:
       # eunomia config
@@ -20,8 +21,7 @@ services:
       # eunomia git credentials
       - ${SERVICE_CONFIGS}/.git-credentials:/root/.git-credentials
       # docker
-      - ${SERVICE_CONFIGS}/docker-daemon.json:/etc/docker/daemon.json
-      - ${SERVICE_CONFIGS}/docker-buildx.config.toml:/etc/docker/buildx.config.toml
+      - ${SERVICE_CONFIGS}/docker:/etc/docker
       # dockerfiles
       - ${SERVICE_CONFIGS}/dockerfiles:/usr/local/lib/zmicro/plugins/eunomia/config/dockerfiles
     # mem_limit: ${SERVICE_GZCAAS_MEM_LIMIT:-16384m} 

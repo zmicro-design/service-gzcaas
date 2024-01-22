@@ -32,13 +32,13 @@ check() {
       return 1
     fi
 
-    if [ ! -f "${SERVICE_CONFIGS}/docker-daemon.json" ]; then
-      log::error "[config][missing] => ${SERVICE_CONFIGS}/docker-daemon.json"
+    if [ ! -f "${SERVICE_CONFIGS}/docker/daemon.json" ]; then
+      log::error "[config][missing] => ${SERVICE_CONFIGS}/docker/daemon.json"
       return 1
     fi
 
-    if [ ! -f "${SERVICE_CONFIGS}/docker-buildx.config.toml" ]; then
-      log::error "[config][missing] => ${SERVICE_CONFIGS}/docker-buildx.config.toml"
+    if [ ! -f "${SERVICE_CONFIGS}/docker/buildx/buildkitd.default.toml" ]; then
+      log::error "[config][missing] => ${SERVICE_CONFIGS}/docker/buildx/buildkitd.default.toml"
       return 1
     fi
   fi
