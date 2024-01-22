@@ -22,7 +22,8 @@ services:
       - ${SERVICE_CONFIGS}/docker-buildx.config.toml:/etc/docker/buildx.config.toml
       # dockerfiles
       - ${SERVICE_CONFIGS}/dockerfiles:/usr/local/lib/zmicro/plugins/eunomia/config/dockerfiles
-    mem_limit: ${SERVICE_GZCAAS_MEM_LIMIT:-"16384m"}
+    # mem_limit: ${SERVICE_GZCAAS_MEM_LIMIT:-16384m} 
+    mem_limit: ${SERVICE_GZCAAS_MEM_LIMIT:-17179869184} # 16G = 16384m = 17179869184
     cpus: ${SERVICE_GZCAAS_CPU_LIMIT:-4}
     # command: sleep 1000000000
       
