@@ -42,6 +42,8 @@ check() {
       return 1
     fi
   fi
+
+  export SERVICE_GZCAAS_DOCKER_BUILDER_MEMORY=${SERVICE_GZCAAS_DOCKER_BUILDER_MEMORY:-$SERVICE_GZCAAS_MEM_LIMIT}
 }
 
 check $@
