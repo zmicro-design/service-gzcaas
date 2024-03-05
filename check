@@ -19,6 +19,10 @@ check() {
   service::config_set SERVICE_GZCAAS_CLIENT_ID text "Client ID"
   service::config_set SERVICE_GZCAAS_CLIENT_SECRET text "Client Secret"
 
+  service::config_set SERVICE_GZCAAS_OSS_ACCESS_KEY_ID text "OSS Access Key ID"
+  service::config_set SERVICE_GZCAAS_OSS_ACCESS_KEY_SECRET text "OSS Access Key Secret"
+  service::config_set SERVICE_GZCAAS_OSS_BUCKET text "OSS Bucket"
+
   if [ "$SERVICE_GZCAAS_IGNORE_CHECK_CONFIGS" != "true" ]; then
     if [ ! -f "${SERVICE_CONFIGS}/eunomia" ]; then
       # log::info "Creating eunomia config"

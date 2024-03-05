@@ -16,6 +16,12 @@ services:
       ENABLE_DOCKER_BUILDX: ${ENABLE_DOCKER_BUILDX:-true}
       DOCKER_BUILDER_PLATFORM: ${SERVICE_DOCKER_BUILDER_PLATFORM:-linux/amd64,linux/arm64}
       DOCKER_BUILDER_MEMORY: ${SERVICE_GZCAAS_DOCKER_BUILDER_MEMORY}
+      #
+      OSS_ACCESS_KEY_ID: ${SERVICE_GZCAAS_OSS_ACCESS_KEY_ID}
+      OSS_ACCESS_KEY_SECRET: ${SERVICE_GZCAAS_OSS_ACCESS_KEY_SECRET}
+      OSS_BUCKET: ${SERVICE_GZCAAS_OSS_BUCKET}
+    env_file:
+      - $SERVICE_CONFIG
     volumes:
       # eunomia config
       - ${SERVICE_CONFIGS}/eunomia:/configs/plugins/eunomia/config
@@ -25,6 +31,8 @@ services:
       - ${SERVICE_CONFIGS}/docker:/etc/docker
       # dockerfiles
       - ${SERVICE_CONFIGS}/dockerfiles:/usr/local/lib/zmicro/plugins/eunomia/config/dockerfiles
+      # # eunomia
+      # - /usr/local/lib/zmicro/plugins/eunomia:/usr/local/lib/zmicro/plugins/eunomia
     # mem_limit: ${SERVICE_GZCAAS_MEM_LIMIT:-16384m} 
     mem_limit: ${SERVICE_GZCAAS_MEM_LIMIT}
     cpus: ${SERVICE_GZCAAS_CPU_LIMIT}
