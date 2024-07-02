@@ -16,36 +16,10 @@ check() {
   fi
 
   service::config_set SERVICE_GZCAAS_PORT text "Port" 8838
+
+  service::config_set SERVICE_GZCAAS_SERVER_URL text "Server URL"
   service::config_set SERVICE_GZCAAS_CLIENT_ID text "Client ID"
   service::config_set SERVICE_GZCAAS_CLIENT_SECRET text "Client Secret"
-
-  service::config_set SERVICE_GZCAAS_OSS_ACCESS_KEY_ID text "OSS Access Key ID"
-  service::config_set SERVICE_GZCAAS_OSS_ACCESS_KEY_SECRET text "OSS Access Key Secret"
-  service::config_set SERVICE_GZCAAS_OSS_BUCKET text "OSS Bucket"
-
-  if [ "$SERVICE_GZCAAS_IGNORE_CHECK_CONFIGS" != "true" ]; then
-    if [ ! -f "${SERVICE_CONFIGS}/eunomia" ]; then
-      # log::info "Creating eunomia config"
-      # cp -r ${SERVICE_CONFIGS}/eunomia.example ${SERVICE_CONFIGS}/eunomia
-      log::error "[config][missing] => ${SERVICE_CONFIGS}/eunomia"
-      return 1
-    fi
-
-    if [ ! -f "${SERVICE_CONFIGS}/.git-credentials" ]; then
-      log::error "[config][missing] => ${SERVICE_CONFIGS}/.git-credentials"
-      return 1
-    fi
-
-    if [ ! -f "${SERVICE_CONFIGS}/docker/daemon.json" ]; then
-      log::error "[config][missing] => ${SERVICE_CONFIGS}/docker/daemon.json"
-      return 1
-    fi
-
-    if [ ! -f "${SERVICE_CONFIGS}/docker/buildx/buildkitd.default.toml" ]; then
-      log::error "[config][missing] => ${SERVICE_CONFIGS}/docker/buildx/buildkitd.default.toml"
-      return 1
-    fi
-  fi
 
   export SERVICE_GZCAAS_DOCKER_BUILDER_MEMORY=${SERVICE_GZCAAS_DOCKER_BUILDER_MEMORY:-$SERVICE_GZCAAS_MEM_LIMIT}
 }

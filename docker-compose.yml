@@ -1,38 +1,16 @@
 services:
   gzcaas:
     restart: always
-    image: whatwewant/gzcaas:${SERVICE_GZCAAS_IMAGE_VERSION}
+    image: ${SERVICE_IMAGE_REGISTRY}/whatwewant/gzcaas:${SERVICE_GZCAAS_IMAGE_VERSION}
     ports:
       - 0.0.0.0:${SERVICE_GZCAAS_PORT}:8838
     privileged: true
     environment:
+      CAAS_SERVER_URL: ${SERVICE_GZCAAS_SERVER_URL}
       CAAS_CLIENT_ID: ${SERVICE_GZCAAS_CLIENT_ID}
       CAAS_CLIENT_SECRET: ${SERVICE_GZCAAS_CLIENT_SECRET}
-      CAAS_METADATA_DIR: /data/idp/agent/deploys
-      CAAS_WORKDIR: /data/cache/idp/build
-      # CAAS_SHELL: eunomia-shell
-      CAAS_SHELL: /usr/local/lib/zmicro/bin/eunomia-shell
-      #
-      ENABLE_DOCKER_BUILDX: ${ENABLE_DOCKER_BUILDX:-true}
-      DOCKER_BUILDER_PLATFORM: ${SERVICE_DOCKER_BUILDER_PLATFORM:-linux/amd64,linux/arm64}
-      DOCKER_BUILDER_MEMORY: ${SERVICE_GZCAAS_DOCKER_BUILDER_MEMORY}
-      #
-      OSS_ACCESS_KEY_ID: ${SERVICE_GZCAAS_OSS_ACCESS_KEY_ID}
-      OSS_ACCESS_KEY_SECRET: ${SERVICE_GZCAAS_OSS_ACCESS_KEY_SECRET}
-      OSS_BUCKET: ${SERVICE_GZCAAS_OSS_BUCKET}
     env_file:
       - $SERVICE_CONFIG
-    volumes:
-      # eunomia config
-      - ${SERVICE_CONFIGS}/eunomia:/configs/plugins/eunomia/config
-      # eunomia git credentials
-      - ${SERVICE_CONFIGS}/.git-credentials:/root/.git-credentials
-      # docker
-      - ${SERVICE_CONFIGS}/docker:/etc/docker
-      # dockerfiles
-      - ${SERVICE_CONFIGS}/dockerfiles:/usr/local/lib/zmicro/plugins/eunomia/config/dockerfiles
-      # # eunomia
-      # - /usr/local/lib/zmicro/plugins/eunomia:/usr/local/lib/zmicro/plugins/eunomia
     # mem_limit: ${SERVICE_GZCAAS_MEM_LIMIT:-16384m} 
     mem_limit: ${SERVICE_GZCAAS_MEM_LIMIT}
     cpus: ${SERVICE_GZCAAS_CPU_LIMIT}
