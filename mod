@@ -1,3 +1,3 @@
 NAME=gzcaas
-VERSION=v1.4.1
+VERSION=v1.5.0
 DESCRIPTION="gzcaas Service"
