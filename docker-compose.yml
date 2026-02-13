@@ -6,7 +6,7 @@ services:
       - 0.0.0.0:${SERVICE_GZCAAS_PORT}:8838
     privileged: true
     environment:
-      CAAS_SERVER_URL: ${SERVICE_GZCAAS_SERVER_URL}
+      # CAAS_SERVER_URL: ${SERVICE_GZCAAS_SERVER_URL}
       CAAS_CLIENT_ID: ${SERVICE_GZCAAS_CLIENT_ID}
       CAAS_CLIENT_SECRET: ${SERVICE_GZCAAS_CLIENT_SECRET}
     # env_file:

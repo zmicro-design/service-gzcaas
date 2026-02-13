@@ -17,7 +17,7 @@ check() {
 
   service::config_set SERVICE_GZCAAS_PORT text "Port" 8838
 
-  service::config_set SERVICE_GZCAAS_SERVER_URL text "Server URL"
+  # service::config_set SERVICE_GZCAAS_SERVER_URL text "Server URL"
   service::config_set SERVICE_GZCAAS_CLIENT_ID text "Client ID"
   service::config_set SERVICE_GZCAAS_CLIENT_SECRET text "Client Secret"
 
